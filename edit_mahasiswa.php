@@ -4,6 +4,25 @@ $judul_halaman = "Edit Mahasiswa";
 if (!isset($_SESSION['username'])) {
     header("Location: index.php");
 }
+$id = $_GET['id'];
+$nomor = 1;
+$t = mysqli_query($conn, "SELECT * FROM mahasiswa WHERE id = '$id'");
+$ta = mysqli_fetch_array($t);
+if(isset($_POST['update'])){
+  $id = $_POST['id'];
+$nama = $_POST['nama'];
+$ktp = $_POST['ktp'];
+$ttl = $_POST['ttl'];
+$jenis_kelamin = $_POST['jenis_kelamin'];
+$no_hp = $_POST['no_hp'];
+$alamat = $_POST['alamat'];
+$pekerjaan = $_POST['pekerjaan'];
+$kecamatan = $_POST['kecamatan'];
+ 
+mysqli_query($conn,"UPDATE mahasiswa SET nama='$nama', ktp='$ktp', ttl='$ttl', jenis_kelamin='$jenis_kelamin', no_hp='$no_hp', alamat='$alamat', pekerjaan='$pekerjaan', kecamatan='$kecamatan' WHERE id='$id'");
+ 
+header("location:dashboard.php");
+}
  ?>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -86,37 +105,47 @@ if (!isset($_SESSION['username'])) {
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form>
+              <form method="POST" action="">
                 <div class="card-body">
                   <div class="form-group">
-                    <label for="exampleInputEmail1">Email address</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+                    <label for="exampleInputEmail1">Nama</label>
+          
+                    <input type="hidden" class="form-control" name="id" value="<?= $ta['id']?>">
+                 <input type="text" class="form-control" name="nama" placeholder="Enter" value="<?= $ta['nama']?>">
                   </div>
                   <div class="form-group">
-                    <label for="exampleInputPassword1">Password</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                    <label >KTP</label>
+                    <input type="text" class="form-control"value="<?= $ta['ktp']?>" name="ktp">
                   </div>
                   <div class="form-group">
-                    <label for="exampleInputFile">File input</label>
-                    <div class="input-group">
-                      <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="exampleInputFile">
-                        <label class="custom-file-label" for="exampleInputFile">Choose file</label>
-                      </div>
-                      <div class="input-group-append">
-                        <span class="input-group-text">Upload</span>
-                      </div>
-                    </div>
+                    <label >Tempat Tanggal Lahir</label>
+                    <input type="text" class="form-control"value="<?= $ta['ttl']?>"name="ttl">
                   </div>
-                  <div class="form-check">
-                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                    <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                  <div class="form-group">
+                    <label >Jenis Kelamin</label>
+                    <input type="text" class="form-control"value="<?= $ta['jenis_kelamin']?>" name="jenis_kelamin">
+                  </div>
+                  <div class="form-group">
+                    <label >No Hp</label>
+                    <input type="text" class="form-control"value="<?= $ta['no_hp']?>" name="no_hp">
+                  </div>
+                  <div class="form-group">
+                    <label >Alamat</label>
+                    <input type="text" class="form-control"value="<?= $ta['alamat']?>" name="alamat">
+                  </div>
+                  <div class="form-group">
+                    <label >Pekerjaan</label>
+                    <input type="text" class="form-control"value="<?= $ta['pekerjaan']?>" name="pekerjaan">
+                  </div>
+                  <div class="form-group">
+                    <label >Kecamatan</label>
+                    <input type="text" class="form-control"value="<?= $ta['kecamatan']?>" name="kecamatan">
                   </div>
                 </div>
                 <!-- /.card-body -->
 
                 <div class="card-footer">
-                  <button type="submit" class="btn btn-primary">Submit</button>
+                  <button type="submit" name="update" class="btn btn-primary">Submit</button>
                 </div>
               </form>
             </div>

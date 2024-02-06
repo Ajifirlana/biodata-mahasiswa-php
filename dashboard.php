@@ -89,8 +89,14 @@ if (!isset($_SESSION['username'])) {
                   <tr>
                   <th>NO</th>
 			<th>Nama</th>
-			<th>NIM</th>
+			<th>KTP</th>
+      <th>Tempat Tanggal Lahir</th>
+      <th>Jenis Kelamin</th>
+      <th>No Hp</th>
+      
 			<th>Alamat</th>
+			<th>Pekerjaan</th>
+			<th>Kecamatan</th>
 			<th>OPSI</th>
                   </tr>
                   </thead>
@@ -103,9 +109,14 @@ if (!isset($_SESSION['username'])) {
             <tr>
 				<td><?php echo $no++; ?></td>
 				<td><?php echo $d['nama']; ?></td>
-				<td><?php echo $d['nim']; ?></td>
+				<td><?php echo $d['ktp']; ?></td>
+				<td><?php echo $d['ttl']; ?></td>
+				<td><?php echo $d['jenis_kelamin']; ?></td>
+				<td><?php echo $d['no_hp']; ?></td>
 				<td><?php echo $d['alamat']; ?></td>
+				<td><?php echo $d['pekerjaan']; ?></td>
 				
+				<td><?php echo $d['kecamatan']; ?></td>
 				<td >	
                 <a href="edit_mahasiswa.php?id=<?php echo $d['id']; ?>"> <button type="button" class="btn-success btn-sm">Edit</button></a>
                 <a href="hapus_mahasiswa.php?id=<?php echo $d['id']; ?>"><button type="button" class="btn-danger btn-sm">Hapus</button></a>
