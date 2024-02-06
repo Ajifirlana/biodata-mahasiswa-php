@@ -1,16 +1,25 @@
 <?php
 include 'head.php';
-$judul_halaman = "Data Mahasiswa";
+$judul_halaman = "Tambah Mahasiswa";
 if (!isset($_SESSION['username'])) {
     header("Location: index.php");
 }
-
-if(isset($_POST['hapus'])){
+if(isset($_POST['simpan'])){
   $id = $_POST['id'];
-  mysqli_query($conn,"DELETE FROM mahasiswa WHERE id='$id'");
-   
-  header("location:dashboard.php");
-  }
+$nama = $_POST['nama'];
+$ktp = $_POST['ktp'];
+$ttl = $_POST['ttl'];
+$jenis_kelamin = $_POST['jenis_kelamin'];
+$no_hp = $_POST['no_hp'];
+$alamat = $_POST['alamat'];
+$pekerjaan = $_POST['pekerjaan'];
+$kecamatan = $_POST['kecamatan'];
+ 
+mysqli_query($conn,"INSERT INTO mahasiswa SET nama='$nama', ktp='$ktp', ttl='$ttl', jenis_kelamin='$jenis_kelamin', no_hp='$no_hp', alamat='$alamat', pekerjaan='$pekerjaan', kecamatan='$kecamatan' WHERE id='$id'");
+ 
+header("location:dashboard.php");
+}
+
  ?>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -56,8 +65,7 @@ if(isset($_POST['hapus'])){
       </div>
 
       <!-- Sidebar Menu -->
-    
-      <?php include"sidebar.php";?>
+    <?php include"sidebar.php";?>
       <!-- /.sidebar-menu -->
     </div>
     <!-- /.sidebar -->
@@ -86,88 +94,61 @@ if(isset($_POST['hapus'])){
     <section class="content">
       <div class="container-fluid">
         <div class="row">
-          <div class="col-12">
-          
-            <div class="card">
-              <!-- /.card-header -->
-              <div class="card-body">
-              <a href="tambah_mahasiswa.php"> <button type="button" class="btn-primary btn-sm">Tambah Data</button></a>
-                      <table id="example1" class="table table-bordered table-striped">
-                  <thead>
-                  <tr>
-                  <th>NO</th>
-			<th>Nama</th>
-			<th>KTP</th>
-      <th>Tempat Tanggal Lahir</th>
-      <th>Jenis Kelamin</th>
-      <th>No Hp</th>
-      
-			<th>Alamat</th>
-			<th>Pekerjaan</th>
-			<th>Kecamatan</th>
-			<th>OPSI</th>
-                  </tr>
-                  </thead>
-                  <tbody>
-                  <?php 
-		$no = 1;
-		$data = mysqli_query($conn,"select * from mahasiswa");
-		while($d = mysqli_fetch_array($data)){
-			?>
-            <tr>
-				<td><?php echo $no++; ?></td>
-				<td><?php echo $d['nama']; ?></td>
-				<td><?php echo $d['ktp']; ?></td>
-				<td><?php echo $d['ttl']; ?></td>
-				<td><?php echo $d['jenis_kelamin']; ?></td>
-				<td><?php echo $d['no_hp']; ?></td>
-				<td><?php echo $d['alamat']; ?></td>
-				<td><?php echo $d['pekerjaan']; ?></td>
-				
-				<td><?php echo $d['kecamatan']; ?></td>
-				<td >	
-                <a href="edit_mahasiswa.php?id=<?php echo $d['id']; ?>"> <button type="button" class="btn-success btn-sm">Edit</button></a>
-                <button type="button" class="btn-danger btn-sm" data-toggle="modal" data-target="#modal-default-<?php echo $d['id']; ?>">Hapus</button>
-		
-			
-                
-      <div class="modal fade" id="modal-default-<?php echo $d['id']; ?>">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h4 class="modal-title">Apakah anda yakin menghapus data</h4>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <form method="post" action="">
-            <div class="modal-body">  <input type="hidden" class="form-control" name="id" value="<?= $d['id']?>">
-                
-              <p><?php echo $d['nama']; ?></p>
-            </div>
-            <div class="modal-footer justify-content-between">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>
-              <button type="submit" name="hapus" class="btn btn-danger">Hapus</button>
-            </div>
-            </form>
-          </div>
-          <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
-      </div>
-      <!-- /.modal -->
-				
-			</tr>
-			<?php 
-		}
-		?>
-                  </tbody>
-                 
-                </table>
+        <div class="col-md-6">
+            <!-- general form elements -->
+            <div class="card card-primary">
+              <div class="card-header">
+                <h3 class="card-title"><?= $judul_halaman?></h3>
               </div>
-              <!-- /.card-body -->
+              <!-- /.card-header -->
+              <!-- form start -->
+              <form method="POST" action="">
+                <div class="card-body">
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Nama</label>
+          
+                 <input type="text" class="form-control" name="nama" placeholder="Enter" >
+                  </div>
+                  <div class="form-group">
+                    <label >KTP</label>
+                    <input type="text" class="form-control"name="ktp">
+                  </div>
+                  <div class="form-group">
+                    <label >Tempat Tanggal Lahir</label>
+                    <input type="text" class="form-control"name="ttl">
+                  </div>
+                  <div class="form-group">
+                    <label >Jenis Kelamin</label>
+                    <input type="text" class="form-control" name="jenis_kelamin">
+                  </div>
+                  <div class="form-group">
+                    <label >No Hp</label>
+                    <input type="text" class="form-control" name="no_hp">
+                  </div>
+                  <div class="form-group">
+                    <label >Alamat</label>
+                    <input type="text" class="form-control" name="alamat">
+                  </div>
+                  <div class="form-group">
+                    <label >Pekerjaan</label>
+                    <input type="text" class="form-control" name="pekerjaan">
+                  </div>
+                  <div class="form-group">
+                    <label >Kecamatan</label>
+                    <input type="text" class="form-control" name="kecamatan">
+                  </div>
+                </div>
+                <!-- /.card-body -->
+
+                <div class="card-footer">
+                  <button type="submit" name="update" class="btn btn-primary">Submit</button>
+                </div>
+              </form>
             </div>
             <!-- /.card -->
+
+            <!-- /.card -->
+
           </div>
           <!-- /.col -->
         </div>
