@@ -1,4 +1,6 @@
 <?php
+
+$judul_aplikasi= "Biodata Mahasiswa";
 $server = "localhost";
 $user = "root";
 $pass = "";
