@@ -1,11 +1,5 @@
 <?php
-include 'koneksi.php';
-session_start();
- 
-if (isset($_SESSION['username'])) {
-    header("Location: berhasil_login.php");
-    exit();
-}
+include 'head.php';
  
 if (isset($_POST['submit'])) {
     $email = mysqli_real_escape_string($conn, $_POST['email']);
@@ -18,40 +12,60 @@ if (isset($_POST['submit'])) {
         $row = mysqli_fetch_assoc($result);
         $_SESSION['username'] = $row['email'];
         $_SESSION['no_hp'] ='Wa:089531941653';
-        header("Location: berhasil_login.php");
+        header("Location: dashboard.php");
         exit();
     } else {
         echo "<script>alert('Email atau password Anda salah. Silakan coba lagi!')</script>";
     }
-}
-?>
- 
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="style.css">
-    <title>Niagahoster Tutorial</title>
-</head>
-<body>
-    <div class="kotak_login">
-        <form action="" method="POST" class="login-email">
-            <p class="tulisan_login" style="font-size: 2rem; font-weight: 800;">Login</p>
-            <div class="input-group">
-                <label>Email</label>
-                <input type="email" placeholder="Email" class="form_login" name="email" required>
-            </div>
-            <div class="input-group">
-            <label>Password</label>
-                <input type="password" placeholder="Password" class="form_login"name="password" required>
-            </div>
-            <div class="input-group">
-                <button name="submit" class="tombol_login">Login</button>
-            </div>
-            <p class="login-register-text">Anda belum punya akun? <a href="register.php">Register</a></p>
-        </form>
+}?>
+<body class="hold-transition login-page">
+<div class="login-box">
+  <!-- /.login-logo -->
+  <div class="card card-outline card-primary">
+    <div class="card-header text-center">
+      <a href="index2.html" class="h1">Biodata Mahasiswa</a>
     </div>
+    <div class="card-body">
+
+      <form action="" method="POST">
+        <div class="input-group mb-3">
+          <input type="email" class="form-control" placeholder="Email"name="email" >
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-envelope"></span>
+            </div>
+          </div>
+        </div>
+        <div class="input-group mb-3">
+          <input type="password" class="form-control" placeholder="Password"name="password" required>
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-lock"></span>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-8">
+            <div class="icheck-primary">
+            <a href="register.php" class="text-center">Register</a>
+            </div>
+          </div>
+          <!-- /.col -->
+          <div class="col-4">
+            <button type="submit" name="submit"class="btn btn-primary btn-block">Sign In</button>
+          </div>
+          <!-- /.col -->
+        </div>
+      </form>
+
+      <!-- /.social-auth-links -->
+    </div>
+    <!-- /.card-body -->
+  </div>
+  <!-- /.card -->
+</div>
+<!-- /.login-box -->
+
 </body>
-</html>
+<?php
+include 'footer.php';?>
