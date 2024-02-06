@@ -23,6 +23,7 @@ mysqli_query($conn,"UPDATE mahasiswa SET nama='$nama', ktp='$ktp', ttl='$ttl', j
  
 header("location:dashboard.php");
 }
+
  ?>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">

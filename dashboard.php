@@ -4,6 +4,13 @@ $judul_halaman = "Data Mahasiswa";
 if (!isset($_SESSION['username'])) {
     header("Location: index.php");
 }
+
+if(isset($_POST['hapus'])){
+  $id = $_POST['id'];
+  mysqli_query($conn,"DELETE FROM mahasiswa WHERE id='$id'");
+   
+  header("location:dashboard.php");
+  }
  ?>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -119,9 +126,35 @@ if (!isset($_SESSION['username'])) {
 				<td><?php echo $d['kecamatan']; ?></td>
 				<td >	
                 <a href="edit_mahasiswa.php?id=<?php echo $d['id']; ?>"> <button type="button" class="btn-success btn-sm">Edit</button></a>
-                <a href="hapus_mahasiswa.php?id=<?php echo $d['id']; ?>"><button type="button" class="btn-danger btn-sm">Hapus</button></a>
+                <button type="button" class="btn-danger btn-sm" data-toggle="modal" data-target="#modal-default-<?php echo $d['id']; ?>">Hapus</button>
 		
-				
+			
+                
+      <div class="modal fade" id="modal-default-<?php echo $d['id']; ?>">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">Apakah anda yakin menghapus data</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <form method="post" action="">
+            <div class="modal-body">  <input type="hidden" class="form-control" name="id" value="<?= $d['id']?>">
+                
+              <p><?php echo $d['nama']; ?></p>
+            </div>
+            <div class="modal-footer justify-content-between">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>
+              <button type="submit" name="hapus" class="btn btn-danger">Hapus</button>
+            </div>
+            </form>
+          </div>
+          <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+      </div>
+      <!-- /.modal -->
 				
 			</tr>
 			<?php 
