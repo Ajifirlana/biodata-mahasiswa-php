@@ -111,7 +111,7 @@ if(isset($_POST['hapus'])){
                   <tbody>
                   <?php 
 		$no = 1;
-		$data = mysqli_query($conn,"select * from mahasiswa");
+		$data = mysqli_query($conn,"SELECT * FROM mahasiswa");
 		while($d = mysqli_fetch_array($data)){
 			?>
             <tr>

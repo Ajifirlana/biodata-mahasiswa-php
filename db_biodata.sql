@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 05, 2024 at 06:00 PM
+-- Generation Time: Feb 06, 2024 at 04:19 PM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -27,17 +27,26 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `mahasiswa` (
+  `id` int(50) NOT NULL,
   `nama` varchar(15) NOT NULL,
-  `nim` int(11) NOT NULL,
-  `alamat` text
+  `ktp` varchar(20) NOT NULL,
+  `ttl` varchar(20) NOT NULL,
+  `jenis_kelamin` varchar(20) NOT NULL,
+  `no_hp` varchar(15) NOT NULL,
+  `alamat` text,
+  `pekerjaan` varchar(50) NOT NULL,
+  `kecamatan` varchar(50) NOT NULL,
+  `foto_ktp` varchar(50) NOT NULL,
+  `foto_kk` varchar(50) NOT NULL,
+  `foto_sktm` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `mahasiswa`
 --
 
-INSERT INTO `mahasiswa` (`nama`, `nim`, `alamat`) VALUES
-('AJI FIRLANA', 471, 'JAMBI');
+INSERT INTO `mahasiswa` (`id`, `nama`, `ktp`, `ttl`, `jenis_kelamin`, `no_hp`, `alamat`, `pekerjaan`, `kecamatan`, `foto_ktp`, `foto_kk`, `foto_sktm`) VALUES
+(1, 'aji firlana', '3473276', 'JAMBI,27-MEI-1990', 'Lak-Laki', '0895777', 'JAMBI', 'KERJA', 'Muara Tembesi', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -66,7 +75,7 @@ INSERT INTO `users` (`id`, `email`, `password`) VALUES
 -- Indexes for table `mahasiswa`
 --
 ALTER TABLE `mahasiswa`
-  ADD PRIMARY KEY (`nim`) USING BTREE;
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `users`
@@ -78,6 +87,11 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for dumped tables
 --
 
+--
+-- AUTO_INCREMENT for table `mahasiswa`
+--
+ALTER TABLE `mahasiswa`
+  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `users`
 --
