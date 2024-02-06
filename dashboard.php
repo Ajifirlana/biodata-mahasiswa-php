@@ -1,6 +1,6 @@
 <?php
 include 'head.php';
-
+$judul_halaman = "Data Mahasiswa";
 if (!isset($_SESSION['username'])) {
     header("Location: index.php");
 }
@@ -63,21 +63,9 @@ if (!isset($_SESSION['username'])) {
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="index.html" class="nav-link">
+                <a href="dashboard.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Dashboard v1</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="index2.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Dashboard v2</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="index3.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Dashboard v3</p>
+                  <p><?= $judul_halaman?></p>
                 </a>
               </li>
             </ul>
@@ -97,12 +85,12 @@ if (!isset($_SESSION['username'])) {
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Data Mahasiswa</h1>
+            <h1><?= $judul_halaman?></h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Data Mahasiswa</li>
+              <li class="breadcrumb-item active"><?= $judul_halaman?></li>
             </ol>
           </div>
         </div>
