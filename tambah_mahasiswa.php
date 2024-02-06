@@ -5,7 +5,6 @@ if (!isset($_SESSION['username'])) {
     header("Location: index.php");
 }
 if(isset($_POST['simpan'])){
-  $id = $_POST['id'];
 $nama = $_POST['nama'];
 $ktp = $_POST['ktp'];
 $ttl = $_POST['ttl'];
@@ -15,8 +14,8 @@ $alamat = $_POST['alamat'];
 $pekerjaan = $_POST['pekerjaan'];
 $kecamatan = $_POST['kecamatan'];
  
-mysqli_query($conn,"INSERT INTO mahasiswa SET nama='$nama', ktp='$ktp', ttl='$ttl', jenis_kelamin='$jenis_kelamin', no_hp='$no_hp', alamat='$alamat', pekerjaan='$pekerjaan', kecamatan='$kecamatan' WHERE id='$id'");
- 
+mysqli_query($conn,"INSERT INTO mahasiswa SET nama='$nama', ktp='$ktp', ttl='$ttl', jenis_kelamin='$jenis_kelamin', no_hp='$no_hp', alamat='$alamat', pekerjaan='$pekerjaan', kecamatan='$kecamatan' ");
+
 header("location:dashboard.php");
 }
 
@@ -141,7 +140,7 @@ header("location:dashboard.php");
                 <!-- /.card-body -->
 
                 <div class="card-footer">
-                  <button type="submit" name="update" class="btn btn-primary">Submit</button>
+                  <button type="submit" name="simpan" class="btn btn-primary">Submit</button>
                 </div>
               </form>
             </div>
