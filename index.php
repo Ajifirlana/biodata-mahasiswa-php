@@ -12,8 +12,13 @@ if (isset($_POST['submit'])) {
         $row = mysqli_fetch_assoc($result);
         $_SESSION['username'] = $row['email'];
         $_SESSION['no_hp'] ='Wa:089531941653';
-        header("Location: dashboard.php");
-        exit();
+        print_r($row['role']);
+        exit;
+        if($row['role']== "user"){
+          header("Location: page_user.php");
+        }else{
+          header("Location: laporan_mahasiswa.php");
+        }
     } else {
         echo "<script>alert('Email atau password Anda salah. Silakan coba lagi!')</script>";
     }
