@@ -12,8 +12,7 @@ if (isset($_POST['submit'])) {
         $row = mysqli_fetch_assoc($result);
         $_SESSION['username'] = $row['email'];
         $_SESSION['no_hp'] ='Wa:089531941653';
-        print_r($row['role']);
-        exit;
+        $_SESSION['role'] = $row['role'];
         if($row['role']== "user"){
           header("Location: page_user.php");
         }else{

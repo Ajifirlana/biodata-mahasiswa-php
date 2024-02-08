@@ -10,6 +10,8 @@
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
+            
+<?php if($_SESSION['role']=="user"){?>     
             <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="dashboard.php" class="nav-link">
@@ -18,7 +20,8 @@
                 </a>
               </li>
             </ul>
-            
+            <?php }?>
+<?php if($_SESSION['role']=="admin"){?>            
             <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="laporan_mahasiswa.php" class="nav-link">
@@ -27,7 +30,7 @@
                 </a>
               </li>
             </ul>
-            
+            <?php }?>
             <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="index.php" class="nav-link">

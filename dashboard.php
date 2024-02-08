@@ -1,8 +1,8 @@
 <?php
 include 'head.php';
 $judul_halaman = "Data Mahasiswa";
-if (!isset($_SESSION['username'])) {
-    header("Location: index.php");
+if ($_SESSION['role'] != "admin") {
+  header("Location: index.php");
 }
 
 if(isset($_POST['hapus'])){

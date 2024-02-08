@@ -1,7 +1,7 @@
 <?php
 include 'head.php';
 $judul_halaman = "Data Mahasiswa";
-if (!isset($_SESSION['username'])) {
+if ($_SESSION['role'] != "user") {
     header("Location: index.php");
 }
 
